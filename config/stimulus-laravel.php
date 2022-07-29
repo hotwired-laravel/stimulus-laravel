@@ -1,6 +1,3 @@
 <?php
 
-// config for Tonysm/StimulusLaravel
-return [
-
-];
+return [];

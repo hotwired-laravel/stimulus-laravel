@@ -4,7 +4,7 @@ namespace Tonysm\StimulusLaravel;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Tonysm\StimulusLaravel\Commands\StimulusLaravelCommand;
+use Tonysm\StimulusLaravel\Commands;
 
 class StimulusLaravelServiceProvider extends PackageServiceProvider
 {
@@ -17,9 +17,9 @@ class StimulusLaravelServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('stimulus-laravel')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_stimulus-laravel_table')
-            ->hasCommand(StimulusLaravelCommand::class);
+            ->hasCommands([
+                Commands\InstallCommand::class,
+                Commands\MakeCommand::class,
+            ]);
     }
 }
