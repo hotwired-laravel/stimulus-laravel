@@ -20,19 +20,19 @@ trait InstallsForImportmap
         File::ensureDirectoryExists(resource_path('js/controllers'));
         File::ensureDirectoryExists(resource_path('js/libs'));
 
-        File::copy(__DIR__ . '/../../../resources/js/libs/stimulus.js', resource_path('js/libs/stimulus.js'));
-        File::copy(__DIR__ . '/../../../resources/js/libs/stimulus-loading-importmap.js', resource_path('js/libs/stimulus-loading.js'));
-        File::copy(__DIR__ . '/../../../resources/js/controllers/hello_controller.js', resource_path('js/controllers/hello_controller.js'));
-        File::copy(__DIR__ . '/../../../resources/js/controllers/index-importmap.js', resource_path('js/controllers/index.js'));
+        File::copy(__DIR__.'/../../../resources/js/libs/stimulus.js', resource_path('js/libs/stimulus.js'));
+        File::copy(__DIR__.'/../../../resources/js/libs/stimulus-loading-importmap.js', resource_path('js/libs/stimulus-loading.js'));
+        File::copy(__DIR__.'/../../../resources/js/controllers/hello_controller.js', resource_path('js/controllers/hello_controller.js'));
+        File::copy(__DIR__.'/../../../resources/js/controllers/index-importmap.js', resource_path('js/controllers/index.js'));
 
         $libsIndexFile = resource_path('js/libs/index.js');
-        $libsIndexSourceFile = __DIR__ . '/../../../resources/js/libs/index-importmap.js';
+        $libsIndexSourceFile = __DIR__.'/../../../resources/js/libs/index-importmap.js';
 
         if (File::exists($libsIndexFile)) {
             $importLine = trim(File::get($libsIndexSourceFile));
 
             if (! str_contains(File::get($libsIndexFile), $importLine)) {
-                File::append($libsIndexFile, $importLine . PHP_EOL);
+                File::append($libsIndexFile, $importLine.PHP_EOL);
             }
         } else {
             File::copy($libsIndexSourceFile, $libsIndexFile);
@@ -45,7 +45,7 @@ trait InstallsForImportmap
             'packages' => ['@hotwired/stimulus'],
         ]);
 
-        File::append($this->importmapsFile(), <<<IMPORTMAP
+        File::append($this->importmapsFile(), <<<'IMPORTMAP'
         Importmap::pinAllFrom("resources/js/controllers", to: "js/controllers", under: "controllers", preload: true);
 
         IMPORTMAP);

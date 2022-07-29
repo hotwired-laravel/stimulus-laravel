@@ -4,7 +4,6 @@ namespace Tonysm\StimulusLaravel;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Tonysm\StimulusLaravel\Commands;
 
 class StimulusLaravelServiceProvider extends PackageServiceProvider
 {

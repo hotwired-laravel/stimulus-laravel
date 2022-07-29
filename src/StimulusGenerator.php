@@ -15,13 +15,13 @@ class StimulusGenerator
     public function create(string $name): array
     {
         $controllerName = $this->controllerName($name);
-        $targetFile = $this->targetFolder . '/' . $controllerName . '_controller.js';
+        $targetFile = $this->targetFolder.'/'.$controllerName.'_controller.js';
 
         File::ensureDirectoryExists(dirname($targetFile));
 
         File::put(
             $targetFile,
-            str_replace('[attribute]', $attributeName = $this->attributeName($name), File::get(__DIR__ . '/../stubs/controller.stub')),
+            str_replace('[attribute]', $attributeName = $this->attributeName($name), File::get(__DIR__.'/../stubs/controller.stub')),
         );
 
         return [
