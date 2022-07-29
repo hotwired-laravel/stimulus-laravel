@@ -44,10 +44,5 @@ trait InstallsForImportmap
         $this->callSilently('importmap:pin', [
             'packages' => ['@hotwired/stimulus'],
         ]);
-
-        File::append($this->importmapsFile(), <<<'IMPORTMAP'
-        Importmap::pinAllFrom("resources/js/controllers", to: "js/controllers", under: "controllers", preload: true);
-
-        IMPORTMAP);
     }
 }
