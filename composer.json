@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "tonysm/stimulus-laravel",
+    "description": "Use Stimulus in your Laravel app",
     "keywords": [
-        ":vendor_name",
+        "tonysm",
         "laravel",
-        ":package_slug"
+        "stimulus-laravel"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/tonysm/stimulus-laravel",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Tony Messias",
+            "email": "tonysm@hey.com",
             "role": "Developer"
         }
     ],
@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Tonysm\\StimulusLaravel\\": "src",
+            "Tonysm\\StimulusLaravel\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Tonysm\\StimulusLaravel\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -51,15 +51,19 @@
         "format": "vendor/bin/pint"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Tonysm\\StimulusLaravel\\StimulusLaravelServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "StimulusLaravel": "Tonysm\\StimulusLaravel\\Facades\\StimulusLaravel"
             }
         }
     },

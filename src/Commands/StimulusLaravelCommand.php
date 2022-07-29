@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Tonysm\StimulusLaravel\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class StimulusLaravelCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'stimulus-laravel';
 
     public $description = 'My command';
 
