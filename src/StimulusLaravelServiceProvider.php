@@ -16,6 +16,7 @@ class StimulusLaravelServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('stimulus-laravel')
+            ->hasAssets()
             ->hasCommands([
                 Commands\InstallCommand::class,
                 Commands\MakeCommand::class,

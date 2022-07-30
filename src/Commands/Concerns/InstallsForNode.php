@@ -19,12 +19,12 @@ trait InstallsForNode
         File::ensureDirectoryExists(resource_path('js/controllers'));
         File::ensureDirectoryExists(resource_path('js/libs'));
 
-        File::copy(__DIR__.'/../../../resources/js/libs/stimulus.js', resource_path('js/libs/stimulus.js'));
-        File::copy(__DIR__.'/../../../resources/js/controllers/hello_controller.js', resource_path('js/controllers/hello_controller.js'));
-        File::copy(__DIR__.'/../../../resources/js/controllers/index-node.js', resource_path('js/controllers/index.js'));
+        File::copy(__DIR__.'/../../../stubs/resources/js/libs/stimulus.js', resource_path('js/libs/stimulus.js'));
+        File::copy(__DIR__.'/../../../stubs/resources/js/controllers/hello_controller.js', resource_path('js/controllers/hello_controller.js'));
+        File::copy(__DIR__.'/../../../stubs/resources/js/controllers/index-node.js', resource_path('js/controllers/index.js'));
 
         $libsIndexFile = resource_path('js/libs/index.js');
-        $libsIndexSourceFile = __DIR__.'/../../../resources/js/libs/index-node.js';
+        $libsIndexSourceFile = __DIR__.'/../../../stubs/resources/js/libs/index-node.js';
 
         if (File::exists($libsIndexFile)) {
             $importLine = trim(File::get($libsIndexSourceFile));
