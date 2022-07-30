@@ -21,7 +21,6 @@ trait InstallsForImportmap
         File::ensureDirectoryExists(resource_path('js/libs'));
 
         File::copy(__DIR__.'/../../../stubs/resources/js/libs/stimulus.js', resource_path('js/libs/stimulus.js'));
-        File::copy(__DIR__.'/../../../stubs/resources/js/libs/stimulus-loading-importmap.js', resource_path('js/libs/stimulus-loading.js'));
         File::copy(__DIR__.'/../../../stubs/resources/js/controllers/hello_controller.js', resource_path('js/controllers/hello_controller.js'));
         File::copy(__DIR__.'/../../../stubs/resources/js/controllers/index-importmap.js', resource_path('js/controllers/index.js'));
 
@@ -44,5 +43,14 @@ trait InstallsForImportmap
         $this->callSilently('importmap:pin', [
             'packages' => ['@hotwired/stimulus'],
         ]);
+
+        // Publishes the `@hotwired/stimulus-loading` package to public/
+        $this->callSilently('vendor:publish', [
+            '--tag' => 'stimulus-laravel-assets',
+        ]);
+
+        File::append($this->importmapsFile(), <<<'IMPORTMAP'
+        Importmap::pin("@hotwired/stimulus-loading", to: "vendor/stimulus-laravel/stimulus-loading.js", preload: true);
+        IMPORTMAP);
     }
 }
