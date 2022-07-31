@@ -5,7 +5,7 @@ use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 uses(InteractsWithViews::class);
 
 it('binds targets', function () {
-    $this->blade(<<<BLADE
+    $this->blade(<<<'BLADE'
     <form data-controller="search checkbox">
         <input type="checkbox" @target(['search' => 'projects', 'checkbox' => 'input'])>
         <input type="checkbox" @target(['search' => 'messages', 'checkbox' => 'input'])>

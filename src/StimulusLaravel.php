@@ -28,7 +28,7 @@ class StimulusLaravel
             foreach (['target', 'value', 'class'] as $attribute) {
                 if ($configs[$attribute]) {
                     foreach ($configs[$attribute] as $key => $val) {
-                        $acc['data-' . $configs['controller'] . '-' . $key . '-' . $attribute] = $val;
+                        $acc['data-'.$configs['controller'].'-'.$key.'-'.$attribute] = $val;
                     }
                 }
             }
@@ -36,7 +36,7 @@ class StimulusLaravel
             return $acc;
         }, collect())->map(function ($value, $attr) {
             $attr = e($attr);
-            $controllers = e(is_array($value) ? implode(" ", $value) : $value);
+            $controllers = e(is_array($value) ? implode(' ', $value) : $value);
 
             return "{$attr}=\"{$controllers}\"";
         })->join(' ');
@@ -47,7 +47,7 @@ class StimulusLaravel
         $targets = collect(Arr::wrap($targets));
 
         return $targets->reduce(function ($acc, $targetName, $controller) {
-            $acc['data-' . $controller . '-target'] = $targetName;
+            $acc['data-'.$controller.'-target'] = $targetName;
 
             return $acc;
         }, collect())->map(function ($value, $attr) {

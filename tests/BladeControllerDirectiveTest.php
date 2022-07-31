@@ -47,7 +47,7 @@ it('binds CSS classes', function () {
 });
 
 it('handles mixed bindings', function () {
-    $this->blade(<<<BLADE
+    $this->blade(<<<'BLADE'
     <div @controller([
         'first',
         'second' => [
