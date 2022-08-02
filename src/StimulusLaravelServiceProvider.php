@@ -27,13 +27,15 @@ class StimulusLaravelServiceProvider extends PackageServiceProvider
 
     public function packageBooted()
     {
-        if (config('stimulus-laravel.directives')) {
-            $this->bindDirectives();
-        }
+        $this->bindDirectivesIfEnabled();
     }
 
-    private function bindDirectives()
+    private function bindDirectivesIfEnabled()
     {
+        if (! Features::enabled(Features::directives())) {
+            return;
+        }
+
         Blade::directive('controller', function ($expression) {
             return "<?php echo \Tonysm\StimulusLaravel\Facades\StimulusLaravel::controller($expression); ?>";
         });

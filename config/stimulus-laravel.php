@@ -1,5 +1,9 @@
 <?php
 
+use Tonysm\StimulusLaravel\Features;
+
 return [
-    'directives' => true,
+    'features' => [
+        Features::directives(),
+    ],
 ];
