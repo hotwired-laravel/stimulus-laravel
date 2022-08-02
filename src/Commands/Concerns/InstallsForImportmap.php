@@ -44,15 +44,13 @@ trait InstallsForImportmap
             'packages' => ['@hotwired/stimulus'],
         ]);
 
-        // Publishes the `@hotwired/stimulus-loading` and the std controllers to public/
+        // Publishes the `@hotwired/stimulus-loading` package to public/
         $this->callSilently('vendor:publish', [
             '--tag' => 'stimulus-laravel-assets',
         ]);
 
         File::append($this->importmapsFile(), <<<'IMPORTMAP'
         Importmap::pin("@hotwired/stimulus-loading", to: "vendor/stimulus-laravel/stimulus-loading.js", preload: true);
-        Importmap::pinAllFrom("public/vendor/stimulus-laravel/controllers", to: "vendor/stimulus-laravel/controllers", under: "std", preload: true);
-
         IMPORTMAP);
     }
 }
