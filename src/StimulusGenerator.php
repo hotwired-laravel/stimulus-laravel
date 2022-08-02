@@ -38,6 +38,6 @@ class StimulusGenerator
 
     private function attributeName(string $name): string
     {
-        return Str::of($this->controllerName($name))->replace('/', '--')->snake('_', '-');
+        return Str::of($this->controllerName($name))->replace('/', '--')->replace('_', '-');
     }
 }
