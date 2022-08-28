@@ -8,7 +8,7 @@
         <img src="https://img.shields.io/packagist/v/tonysm/stimulus-laravel" alt="Latest Stable Version">
     </a>
     <a href="https://packagist.org/packages/tonysm/stimulus-laravel">
-        <img src="https://img.shields.io/packagist/l/tonysm/stimulus-laravel" alt="License">
+        <img src="https://img.shields.io/github/license/tonysm/stimulus-laravel" alt="License">
     </a>
 </p>
 
