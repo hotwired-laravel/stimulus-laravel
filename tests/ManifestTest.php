@@ -33,5 +33,12 @@ it('generates controllers imports given a path', function () {
             import TypeScriptController from './type_script_controller'
             application.register('type-script', TypeScriptController)
             JS
+        )
+        ->not->toContain(
+            <<<JS
+
+            import Index from './index'
+            application.register('index', Index)
+            JS
         );
 });

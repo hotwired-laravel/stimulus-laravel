@@ -12,6 +12,8 @@ class Manifest
     public function generateFrom(string $controllersPath): Collection
     {
         return collect(File::allFiles($controllersPath))
+            ->filter(fn (SplFileInfo $file) => str_contains($file->getFilename(), '_controller'))
+            ->values()
             ->map(function (SplFileInfo $file) use ($controllersPath) {
                 $controllerPath = $this->relativePathFrom($file->getRealPath(), $controllersPath);
                 $modulePath = Str::before($controllerPath, '.');
