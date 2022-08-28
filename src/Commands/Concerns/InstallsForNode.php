@@ -3,7 +3,6 @@
 namespace Tonysm\StimulusLaravel\Commands\Concerns;
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Js;
 
 /**
  * @mixin \Tonysm\StimulusLaravel\Commands\InstallCommand
@@ -40,7 +39,7 @@ trait InstallsForNode
             }
 
             if (! str_contains(File::get(resource_path('js/app.js')), "import './libs';")) {
-                File::append(resource_path('js/app.js'), <<<JS
+                File::append(resource_path('js/app.js'), <<<'JS'
                 import './libs';
 
                 JS);
@@ -66,9 +65,8 @@ trait InstallsForNode
     }
 
     /**
-     *
-     * @param callable $callback
-     * @param bool $dev
+     * @param  callable  $callback
+     * @param  bool  $dev
      * @return void
      */
     protected static function updateNodePackages(callable $callback, $dev = true)
@@ -90,7 +88,7 @@ trait InstallsForNode
 
         File::put(
             base_path('package.json'),
-            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL
+            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT).PHP_EOL
         );
     }
 }

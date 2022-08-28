@@ -9,6 +9,7 @@ use Tonysm\StimulusLaravel\Manifest;
 class ManifestCommand extends Command
 {
     public $signature = 'stimulus:manifest';
+
     public $description = 'Updates the manifest based on the existing Stimulus controllers.';
 
     public function handle(Manifest $generator)
