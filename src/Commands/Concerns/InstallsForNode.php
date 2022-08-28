@@ -3,6 +3,7 @@
 namespace Tonysm\StimulusLaravel\Commands\Concerns;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Js;
 
 /**
  * @mixin \Tonysm\StimulusLaravel\Commands\InstallCommand
@@ -17,33 +18,50 @@ trait InstallsForNode
 
     protected function publishJsFilesForNode()
     {
-        File::ensureDirectoryExists(resource_path('js/controllers'));
-        File::ensureDirectoryExists(resource_path('js/libs'));
+        $this->components->task('publishing JS files', function () {
+            File::ensureDirectoryExists(resource_path('js/controllers'));
+            File::ensureDirectoryExists(resource_path('js/libs'));
 
-        File::copy(__DIR__.'/../../../stubs/resources/js/libs/stimulus.js', resource_path('js/libs/stimulus.js'));
-        File::copy(__DIR__.'/../../../stubs/resources/js/controllers/hello_controller.js', resource_path('js/controllers/hello_controller.js'));
-        File::copy(__DIR__.'/../../../stubs/resources/js/controllers/index-node.js', resource_path('js/controllers/index.js'));
+            File::copy(__DIR__.'/../../../stubs/resources/js/libs/stimulus.js', resource_path('js/libs/stimulus.js'));
+            File::copy(__DIR__.'/../../../stubs/resources/js/controllers/hello_controller.js', resource_path('js/controllers/hello_controller.js'));
+            File::copy(__DIR__.'/../../../stubs/resources/js/controllers/index-node.js', resource_path('js/controllers/index.js'));
 
-        $libsIndexFile = resource_path('js/libs/index.js');
-        $libsIndexSourceFile = __DIR__.'/../../../stubs/resources/js/libs/index-node.js';
+            $libsIndexFile = resource_path('js/libs/index.js');
+            $libsIndexSourceFile = __DIR__.'/../../../stubs/resources/js/libs/index-node.js';
 
-        if (File::exists($libsIndexFile)) {
-            $importLine = trim(File::get($libsIndexSourceFile));
+            if (File::exists($libsIndexFile)) {
+                $importLine = trim(File::get($libsIndexSourceFile));
 
-            if (! str_contains(File::get($libsIndexFile), $importLine)) {
-                File::append($libsIndexFile, $importLine.PHP_EOL);
+                if (! str_contains(File::get($libsIndexFile), $importLine)) {
+                    File::append($libsIndexFile, $importLine.PHP_EOL);
+                }
+            } else {
+                File::copy($libsIndexSourceFile, $libsIndexFile);
             }
-        } else {
-            File::copy($libsIndexSourceFile, $libsIndexFile);
-        }
+
+            if (! str_contains(File::get(resource_path('js/app.js')), "import './libs';")) {
+                File::append(resource_path('js/app.js'), <<<JS
+                import './libs';
+
+                JS);
+            }
+
+            return true;
+        });
     }
 
     protected function updateNpmPackagesForNode()
     {
-        $this->updateNodePackages(function ($packages) {
-            return [
-                '@hotwired/stimulus' => '^3.1.0',
-            ] + $packages;
+        $this->components->task('registering NPM dependency', function () {
+            $this->updateNodePackages(function ($packages) {
+                return [
+                    '@hotwired/stimulus' => '^3.1.0',
+                ] + $packages;
+            });
+
+            $this->afterMessages[] = '<fg=white>Run: `<fg=yellow>npm install && npm run dev</>`</>';
+
+            return true;
         });
     }
 

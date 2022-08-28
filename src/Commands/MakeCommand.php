@@ -14,13 +14,22 @@ class MakeCommand extends Command
 
     public function handle(StimulusGenerator $generator): int
     {
-        $generator->create($this->argument('name'));
+        $this->components->info('Making Stimulus Controller');
+
+        $this->components->task('creating controller', function () use ($generator) {
+            $generator->create($this->argument('name'));
+
+            return true;
+        });
 
         if (! File::exists(base_path('routes/importmap.php'))) {
-            $this->call(ManifestCommand::class);
+            $this->components->task('regenerating manifest', function () {
+                return $this->callSilently(ManifestCommand::class);
+            });
         }
 
-        $this->comment('Done!');
+        $this->newLine();
+        $this->components->info('Done');
 
         return self::SUCCESS;
     }
