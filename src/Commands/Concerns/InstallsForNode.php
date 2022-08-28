@@ -12,6 +12,7 @@ trait InstallsForNode
     protected function installsForNode()
     {
         $this->publishJsFilesForNode();
+        $this->updateNpmPackagesForNode();
     }
 
     protected function publishJsFilesForNode()
@@ -35,5 +36,43 @@ trait InstallsForNode
         } else {
             File::copy($libsIndexSourceFile, $libsIndexFile);
         }
+    }
+
+    protected function updateNpmPackagesForNode()
+    {
+        $this->updateNodePackages(function ($packages) {
+            return [
+                '@hotwired/stimulus' => '^3.1.0',
+            ] + $packages;
+        });
+    }
+
+    /**
+     *
+     * @param callable $callback
+     * @param bool $dev
+     * @return void
+     */
+    protected static function updateNodePackages(callable $callback, $dev = true)
+    {
+        if (! File::exists(base_path('package.json'))) {
+            return;
+        }
+
+        $configurationKey = $dev ? 'devDependencies' : 'dependencies';
+
+        $packages = json_decode(File::get(base_path('package.json')), true);
+
+        $packages[$configurationKey] = $callback(
+            array_key_exists($configurationKey, $packages) ? $packages[$configurationKey] : [],
+            $configurationKey
+        );
+
+        ksort($packages[$configurationKey]);
+
+        File::put(
+            base_path('package.json'),
+            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL
+        );
     }
 }
