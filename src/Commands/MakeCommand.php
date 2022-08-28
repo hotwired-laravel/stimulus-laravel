@@ -3,6 +3,7 @@
 namespace Tonysm\StimulusLaravel\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 use Tonysm\StimulusLaravel\StimulusGenerator;
 
 class MakeCommand extends Command
@@ -14,6 +15,10 @@ class MakeCommand extends Command
     public function handle(StimulusGenerator $generator): int
     {
         $generator->create($this->argument('name'));
+
+        if (! File::exists(base_path('routes/importmap.php'))) {
+            $this->call('stimulus:manifes');
+        }
 
         $this->comment('Done!');
 
