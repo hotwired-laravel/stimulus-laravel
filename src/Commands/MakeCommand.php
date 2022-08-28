@@ -17,7 +17,7 @@ class MakeCommand extends Command
         $generator->create($this->argument('name'));
 
         if (! File::exists(base_path('routes/importmap.php'))) {
-            $this->call('stimulus:manifes');
+            $this->call(ManifestCommand::class);
         }
 
         $this->comment('Done!');
