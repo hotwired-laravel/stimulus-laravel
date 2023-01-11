@@ -29,7 +29,7 @@ class Manifest
 
                 return <<<JS
 
-                import {$controllerClassName} from '{$join([".", $modulePath])}'
+                import {$controllerClassName} from '{$join(['.', $modulePath])}'
                 application.register('{$tagName}', {$controllerClassName})
                 JS;
             });

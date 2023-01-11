@@ -16,12 +16,12 @@ class ManifestTest extends TestCase
             __DIR__,
             'stubs',
             'controllers',
-        ]) . DIRECTORY_SEPARATOR)->join(PHP_EOL);
+        ]).DIRECTORY_SEPARATOR)->join(PHP_EOL);
 
         $this->assertStringContainsString(
             <<<JS
 
-            import HelloController from '{$join([".", "hello_controller"])}'
+            import HelloController from '{$join(['.', 'hello_controller'])}'
             application.register('hello', HelloController)
             JS,
             $manifest,
@@ -30,7 +30,7 @@ class ManifestTest extends TestCase
         $this->assertStringContainsString(
             <<<JS
 
-            import Nested__DeepController from '{$join([".", "nested", "deep_controller"])}'
+            import Nested__DeepController from '{$join(['.', 'nested', 'deep_controller'])}'
             application.register('nested--deep', Nested__DeepController)
             JS,
             $manifest,
@@ -39,7 +39,7 @@ class ManifestTest extends TestCase
         $this->assertStringContainsString(
             <<<JS
 
-            import CoffeeController from '{$join([".", "coffee_controller"])}'
+            import CoffeeController from '{$join(['.', 'coffee_controller'])}'
             application.register('coffee', CoffeeController)
             JS,
             $manifest,
@@ -48,7 +48,7 @@ class ManifestTest extends TestCase
         $this->assertStringContainsString(
             <<<JS
 
-            import TypeScriptController from '{$join([".", "type_script_controller"])}'
+            import TypeScriptController from '{$join(['.', 'type_script_controller'])}'
             application.register('type-script', TypeScriptController)
             JS,
             $manifest,
@@ -57,7 +57,7 @@ class ManifestTest extends TestCase
         $this->assertStringNotContainsString(
             <<<JS
 
-            import Index from '{$join([".", "index"])}'
+            import Index from '{$join(['.', 'index'])}'
             application.register('index', Index)
             JS,
             $manifest,
