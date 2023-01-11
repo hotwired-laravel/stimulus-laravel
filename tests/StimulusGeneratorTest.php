@@ -1,35 +1,51 @@
 <?php
 
+namespace Tonysm\StimulusLaravel\Tests;
+
 use Illuminate\Support\Facades\File;
 use Tonysm\StimulusLaravel\StimulusGenerator;
 
-beforeEach(function () {
-    $this->tmpFolder = sys_get_temp_dir().'/stimulus-laravel-test';
+class StimulusGeneratorTest extends TestCase
+{
+    private string $tmpFolder;
 
-    File::ensureDirectoryExists($this->tmpFolder);
-    File::cleanDirectory($this->tmpFolder);
-});
+    protected function setUp(): void
+    {
+        parent::setUp();
 
-it('creates stimulus controller with regular name', function () {
-    (new StimulusGenerator($this->tmpFolder))
-        ->create('hello');
+        $this->tmpFolder = sys_get_temp_dir().'/stimulus-laravel-test';
 
-    expect(File::exists($file = $this->tmpFolder.'/hello_controller.js'))->toBeTrue();
-    expect(File::get($file))->toContain('data-controller="hello"');
-});
+        File::ensureDirectoryExists($this->tmpFolder);
+        File::cleanDirectory($this->tmpFolder);
+    }
 
-it('removes controller suffix when used', function () {
-    (new StimulusGenerator($this->tmpFolder))
-        ->create('hello_controller');
+    /** @test */
+    public function creates_stimulus_controller_with_regular_name()
+    {
+        (new StimulusGenerator($this->tmpFolder))
+            ->create('hello');
 
-    expect(File::exists($file = $this->tmpFolder.'/hello_controller.js'))->toBeTrue();
-    expect(File::get($file))->toContain('data-controller="hello"');
-});
+        $this->assertTrue(File::exists($file = $this->tmpFolder.'/hello_controller.js'));
+        $this->assertStringContainsString('data-controller="hello"', File::get($file));
+    }
 
-it('generates controller names with sub-folders', function () {
-    $file = (new StimulusGenerator($this->tmpFolder))
-        ->create('nested/hello_controller');
+    /** @test */
+    public function removes_controller_suffix_when_used()
+    {
+        (new StimulusGenerator($this->tmpFolder))
+            ->create('hello_controller');
 
-    expect(File::exists($file = $this->tmpFolder.'/nested/hello_controller.js'))->toBeTrue();
-    expect(File::get($file))->toContain('data-controller="nested--hello"');
-});
+        $this->assertTrue(File::exists($file = $this->tmpFolder.'/hello_controller.js'));
+        $this->assertStringContainsString('data-controller="hello"', File::get($file));
+    }
+
+    /** @test */
+    public function generates_controller_with_subfolders()
+    {
+        $file = (new StimulusGenerator($this->tmpFolder))
+            ->create('nested/hello_controller');
+
+        $this->assertTrue(File::exists($file = $this->tmpFolder.'/nested/hello_controller.js'));
+        $this->assertStringContainsString('data-controller="nested--hello"', File::get($file));
+    }
+}
