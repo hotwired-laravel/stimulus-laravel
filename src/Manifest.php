@@ -23,9 +23,13 @@ class Manifest
                     ->join('__');
                 $tagName = Str::of($modulePath)->before('_controller')->replace('_', '-')->replace(DIRECTORY_SEPARATOR, '--')->toString();
 
+                $join = function ($paths) {
+                    return implode(DIRECTORY_SEPARATOR, $paths);
+                };
+
                 return <<<JS
 
-                import {$controllerClassName} from './{$modulePath}'
+                import {$controllerClassName} from '{$join(['.', $modulePath])}'
                 application.register('{$tagName}', {$controllerClassName})
                 JS;
             });
