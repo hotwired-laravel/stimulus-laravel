@@ -9,7 +9,11 @@ class ManifestTest extends TestCase
     /** @test */
     public function generates_controllers_imports_given_a_path()
     {
-        $manifest = (new Manifest)->generateFrom(__DIR__.'/stubs/controllers/')->join(PHP_EOL);
+        $manifest = (new Manifest)->generateFrom(implode(DIRECTORY_SEPARATOR, [
+            __DIR__,
+            'stubs',
+            'controllers',
+        ]) . DIRECTORY_SEPARATOR)->join(PHP_EOL);
 
         $this->assertStringContainsString(
             <<<'JS'
