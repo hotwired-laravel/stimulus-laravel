@@ -1,14 +1,11 @@
 <p align="center" style="margin-top: 2rem; margin-bottom: 2rem;"><img src="/art/stimulus-laravel-logo.svg" alt="Logo Stimulus Laravel" /></p>
 
 <p align="center">
-    <a href="https://packagist.org/packages/tonysm/stimulus-laravel">
-        <img src="https://img.shields.io/packagist/dt/tonysm/stimulus-laravel" alt="Total Downloads">
+    <a href="https://packagist.org/packages/hotwired/stimulus-laravel">
+        <img src="https://img.shields.io/packagist/v/hotwired/stimulus-laravel" alt="Latest Stable Version">
     </a>
-    <a href="https://packagist.org/packages/tonysm/stimulus-laravel">
-        <img src="https://img.shields.io/packagist/v/tonysm/stimulus-laravel" alt="Latest Stable Version">
-    </a>
-    <a href="https://packagist.org/packages/tonysm/stimulus-laravel">
-        <img src="https://img.shields.io/github/license/tonysm/stimulus-laravel" alt="License">
+    <a href="https://packagist.org/packages/hotwired/stimulus-laravel">
+        <img src="https://img.shields.io/github/license/hotwired/stimulus-laravel" alt="License">
     </a>
 </p>
 
@@ -28,7 +25,7 @@ This package was inspired by the [stimulus-rails gem](https://github.com/hotwire
 Stimulus Laravel may be installed via composer:
 
 ```bash
-composer require tonysm/stimulus-laravel
+composer require hotwired/stimulus-laravel
 ```
 
 Next, if you're on a fresh Laravel app (see the [#manual-installation](#manual-installation) if you're not), you may run install command:
@@ -82,7 +79,7 @@ If you're using Importmap Laravel, follow the [Importmap Steps](#importmap-steps
 1. Either way, you need to install the lib via composer first:
 
 ```bash
-composer require tonysm/stimulus-laravel
+composer require hotwired/stimulus-laravel
 ```
 
 ### Importmap Steps

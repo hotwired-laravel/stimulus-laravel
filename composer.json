@@ -1,9 +1,11 @@
 {
-    "name": "tonysm/stimulus-laravel",
+    "name": "hotwired/stimulus-laravel",
     "description": "Use Stimulus in your Laravel app",
     "keywords": [
-        "tonysm",
+        "hotwired",
+        "hotwire",
         "laravel",
+        "stimulus",
         "stimulus-laravel"
     ],
     "homepage": "https://github.com/tonysm/stimulus-laravel",
