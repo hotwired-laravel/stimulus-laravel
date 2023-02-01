@@ -5,7 +5,7 @@
         <img src="https://img.shields.io/packagist/v/hotwired/stimulus-laravel" alt="Latest Stable Version">
     </a>
     <a href="https://packagist.org/packages/hotwired/stimulus-laravel">
-        <img src="https://img.shields.io/github/license/hotwired/stimulus-laravel" alt="License">
+        <img src="https://img.shields.io/github/license/hotwired-laravel/stimulus-laravel" alt="License">
     </a>
 </p>
 
