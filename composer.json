@@ -8,7 +8,7 @@
         "stimulus",
         "stimulus-laravel"
     ],
-    "homepage": "https://github.com/tonysm/stimulus-laravel",
+    "homepage": "https://github.com/hotwired-laravel/stimulus-laravel",
     "license": "MIT",
     "authors": [
         {
@@ -30,13 +30,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Tonysm\\StimulusLaravel\\": "src",
-            "Tonysm\\StimulusLaravel\\Database\\Factories\\": "database/factories"
+            "Hotwired\\StimulusLaravel\\": "src",
+            "Hotwired\\StimulusLaravel\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tonysm\\StimulusLaravel\\Tests\\": "tests"
+            "Hotwired\\StimulusLaravel\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -55,10 +55,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Tonysm\\StimulusLaravel\\StimulusLaravelServiceProvider"
+                "Hotwired\\StimulusLaravel\\StimulusLaravelServiceProvider"
             ],
             "aliases": {
-                "StimulusLaravel": "Tonysm\\StimulusLaravel\\Facades\\StimulusLaravel"
+                "StimulusLaravel": "Hotwired\\StimulusLaravel\\Facades\\StimulusLaravel"
             }
         }
     },
