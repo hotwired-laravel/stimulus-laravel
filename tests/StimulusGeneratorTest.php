@@ -1,9 +1,9 @@
 <?php
 
-namespace Tonysm\StimulusLaravel\Tests;
+namespace Hotwired\StimulusLaravel\Tests;
 
 use Illuminate\Support\Facades\File;
-use Tonysm\StimulusLaravel\StimulusGenerator;
+use Hotwired\StimulusLaravel\StimulusGenerator;
 
 class StimulusGeneratorTest extends TestCase
 {

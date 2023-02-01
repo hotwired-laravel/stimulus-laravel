@@ -1,10 +1,10 @@
 <?php
 
-namespace Tonysm\StimulusLaravel\Commands;
+namespace Hotwired\StimulusLaravel\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Tonysm\StimulusLaravel\Manifest;
+use Hotwired\StimulusLaravel\Manifest;
 
 class ManifestCommand extends Command
 {

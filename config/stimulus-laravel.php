@@ -1,6 +1,6 @@
 <?php
 
-use Tonysm\StimulusLaravel\Features;
+use Hotwired\StimulusLaravel\Features;
 
 return [
     'controllers_path' => resource_path('js/controllers'),

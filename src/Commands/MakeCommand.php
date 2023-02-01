@@ -1,10 +1,10 @@
 <?php
 
-namespace Tonysm\StimulusLaravel\Commands;
+namespace Hotwired\StimulusLaravel\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Tonysm\StimulusLaravel\StimulusGenerator;
+use Hotwired\StimulusLaravel\StimulusGenerator;
 
 class MakeCommand extends Command
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tonysm\StimulusLaravel\Tests;
+namespace Hotwired\StimulusLaravel\Tests;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 

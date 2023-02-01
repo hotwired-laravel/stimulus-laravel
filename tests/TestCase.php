@@ -1,10 +1,10 @@
 <?php
 
-namespace Tonysm\StimulusLaravel\Tests;
+namespace Hotwired\StimulusLaravel\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Tonysm\StimulusLaravel\StimulusLaravelServiceProvider;
+use Hotwired\StimulusLaravel\StimulusLaravelServiceProvider;
 
 class TestCase extends Orchestra
 {

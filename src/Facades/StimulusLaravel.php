@@ -1,16 +1,16 @@
 <?php
 
-namespace Tonysm\StimulusLaravel\Facades;
+namespace Hotwired\StimulusLaravel\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Tonysm\StimulusLaravel\StimulusLaravel
+ * @see \Hotwired\StimulusLaravel\StimulusLaravel
  */
 class StimulusLaravel extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \Tonysm\StimulusLaravel\StimulusLaravel::class;
+        return \Hotwired\StimulusLaravel\StimulusLaravel::class;
     }
 }

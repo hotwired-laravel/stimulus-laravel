@@ -1,6 +1,6 @@
 <?php
 
-namespace Tonysm\StimulusLaravel;
+namespace Hotwired\StimulusLaravel;
 
 use Illuminate\Support\Facades\Blade;
 use Spatie\LaravelPackageTools\Package;
@@ -39,11 +39,11 @@ class StimulusLaravelServiceProvider extends PackageServiceProvider
         }
 
         Blade::directive('controller', function ($expression) {
-            return "<?php echo \Tonysm\StimulusLaravel\Facades\StimulusLaravel::controller($expression); ?>";
+            return "<?php echo \Hotwired\StimulusLaravel\Facades\StimulusLaravel::controller($expression); ?>";
         });
 
         Blade::directive('target', function ($expression) {
-            return "<?php echo \Tonysm\StimulusLaravel\Facades\StimulusLaravel::target($expression); ?>";
+            return "<?php echo \Hotwired\StimulusLaravel\Facades\StimulusLaravel::target($expression); ?>";
         });
     }
 }
