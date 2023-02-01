@@ -2,9 +2,9 @@
 
 namespace Hotwired\StimulusLaravel\Tests;
 
+use Hotwired\StimulusLaravel\StimulusLaravelServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Hotwired\StimulusLaravel\StimulusLaravelServiceProvider;
 
 class TestCase extends Orchestra
 {

@@ -2,9 +2,9 @@
 
 namespace Hotwired\StimulusLaravel\Commands;
 
+use Hotwired\StimulusLaravel\StimulusGenerator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Hotwired\StimulusLaravel\StimulusGenerator;
 
 class MakeCommand extends Command
 {

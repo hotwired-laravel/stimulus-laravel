@@ -2,9 +2,9 @@
 
 namespace Hotwired\StimulusLaravel\Commands;
 
+use Hotwired\StimulusLaravel\Manifest;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Hotwired\StimulusLaravel\Manifest;
 
 class ManifestCommand extends Command
 {
