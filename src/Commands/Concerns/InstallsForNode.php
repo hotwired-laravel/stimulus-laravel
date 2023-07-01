@@ -65,7 +65,6 @@ trait InstallsForNode
     }
 
     /**
-     * @param  callable  $callback
      * @param  bool  $dev
      * @return void
      */

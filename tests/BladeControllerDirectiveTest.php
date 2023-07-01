@@ -27,7 +27,7 @@ class BladeControllerDirectiveTest extends TestCase
         $this->blade(trim(<<<'BLADE'
             <div @controller(['hello' => ['value' => ['name' => 'Tony']]])></div>
         BLADE))
-        ->assertSee('<div data-controller="hello" data-hello-name-value="Tony"></div>', false);
+            ->assertSee('<div data-controller="hello" data-hello-name-value="Tony"></div>', false);
 
         $this->blade(trim(<<<'BLADE'
             <div @controller([
@@ -35,7 +35,7 @@ class BladeControllerDirectiveTest extends TestCase
                 'other' => ['value' => ['name' => 'Tester']],
             ])></div>
         BLADE))
-        ->assertSee('<div data-controller="hello other" data-hello-name-value="Tony" data-other-name-value="Tester"></div>', false);
+            ->assertSee('<div data-controller="hello other" data-hello-name-value="Tony" data-other-name-value="Tester"></div>', false);
     }
 
     /** @test */
@@ -44,7 +44,7 @@ class BladeControllerDirectiveTest extends TestCase
         $this->blade(trim(<<<'BLADE'
             <div @controller(['hello' => ['class' => ['loading' => 'bg-gray-100 text-gray-900']]])></div>
         BLADE))
-        ->assertSee('<div data-controller="hello" data-hello-loading-class="bg-gray-100 text-gray-900"></div>', false);
+            ->assertSee('<div data-controller="hello" data-hello-loading-class="bg-gray-100 text-gray-900"></div>', false);
 
         $this->blade(trim(<<<'BLADE'
             <div @controller([
@@ -52,8 +52,8 @@ class BladeControllerDirectiveTest extends TestCase
                 'other' => ['class' => ['loading' => 'bg-blue-100 text-blue-900']],
             ])></div>
         BLADE))
-        ->assertSee('<div data-controller="hello other" data-hello-loading-class="bg-gray-100 text-gray-900"'.
-            ' data-other-loading-class="bg-blue-100 text-blue-900"></div>', false);
+            ->assertSee('<div data-controller="hello other" data-hello-loading-class="bg-gray-100 text-gray-900"'.
+                ' data-other-loading-class="bg-blue-100 text-blue-900"></div>', false);
     }
 
     /** @test */
@@ -72,8 +72,8 @@ class BladeControllerDirectiveTest extends TestCase
             ],
         ])></div>
         BLADE)
-        ->assertSee('<div data-controller="first second third"'.
-            ' data-second-name-value="Tony" data-second-loading-class="bg-gray-100"'.
-            ' data-third-name-value="Tester" data-third-loading-class="bg-red-100"></div>', false);
+            ->assertSee('<div data-controller="first second third"'.
+                ' data-second-name-value="Tony" data-second-loading-class="bg-gray-100"'.
+                ' data-third-name-value="Tester" data-third-loading-class="bg-red-100"></div>', false);
     }
 }
