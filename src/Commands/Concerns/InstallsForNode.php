@@ -1,11 +1,11 @@
 <?php
 
-namespace Hotwired\StimulusLaravel\Commands\Concerns;
+namespace HotwiredLaravel\StimulusLaravel\Commands\Concerns;
 
 use Illuminate\Support\Facades\File;
 
 /**
- * @mixin \Hotwired\StimulusLaravel\Commands\InstallCommand
+ * @mixin \HotwiredLaravel\StimulusLaravel\Commands\InstallCommand
  */
 trait InstallsForNode
 {

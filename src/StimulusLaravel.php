@@ -1,6 +1,6 @@
 <?php
 
-namespace Hotwired\StimulusLaravel;
+namespace HotwiredLaravel\StimulusLaravel;
 
 use Illuminate\Support\Arr;
 

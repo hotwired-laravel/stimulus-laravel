@@ -1,8 +1,8 @@
 <?php
 
-namespace Hotwired\StimulusLaravel\Tests;
+namespace HotwiredLaravel\StimulusLaravel\Tests;
 
-use Hotwired\StimulusLaravel\Manifest;
+use HotwiredLaravel\StimulusLaravel\Manifest;
 
 class ManifestTest extends TestCase
 {

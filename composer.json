@@ -30,13 +30,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Hotwired\\StimulusLaravel\\": "src",
-            "Hotwired\\StimulusLaravel\\Database\\Factories\\": "database/factories"
+            "HotwiredLaravel\\StimulusLaravel\\": "src",
+            "HotwiredLaravel\\StimulusLaravel\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Hotwired\\StimulusLaravel\\Tests\\": "tests"
+            "HotwiredLaravel\\StimulusLaravel\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -55,10 +55,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Hotwired\\StimulusLaravel\\StimulusLaravelServiceProvider"
+                "HotwiredLaravel\\StimulusLaravel\\StimulusLaravelServiceProvider"
             ],
             "aliases": {
-                "StimulusLaravel": "Hotwired\\StimulusLaravel\\Facades\\StimulusLaravel"
+                "StimulusLaravel": "HotwiredLaravel\\StimulusLaravel\\Facades\\StimulusLaravel"
             }
         }
     },

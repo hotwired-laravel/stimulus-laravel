@@ -1,8 +1,8 @@
 <?php
 
-namespace Hotwired\StimulusLaravel\Tests;
+namespace HotwiredLaravel\StimulusLaravel\Tests;
 
-use Hotwired\StimulusLaravel\StimulusLaravelServiceProvider;
+use HotwiredLaravel\StimulusLaravel\StimulusLaravelServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Hotwired\StimulusLaravel\Tests;
+namespace HotwiredLaravel\StimulusLaravel\Tests;
 
-use Hotwired\StimulusLaravel\StimulusGenerator;
+use HotwiredLaravel\StimulusLaravel\StimulusGenerator;
 use Illuminate\Support\Facades\File;
 
 class StimulusGeneratorTest extends TestCase

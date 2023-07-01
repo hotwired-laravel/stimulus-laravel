@@ -1,8 +1,8 @@
 <?php
 
-namespace Hotwired\StimulusLaravel\Commands;
+namespace HotwiredLaravel\StimulusLaravel\Commands;
 
-use Hotwired\StimulusLaravel\Manifest;
+use HotwiredLaravel\StimulusLaravel\Manifest;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 

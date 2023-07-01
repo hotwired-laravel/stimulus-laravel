@@ -1,6 +1,6 @@
 <?php
 
-namespace Hotwired\StimulusLaravel;
+namespace HotwiredLaravel\StimulusLaravel;
 
 class Features
 {

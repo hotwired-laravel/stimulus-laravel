@@ -1,6 +1,6 @@
 <?php
 
-namespace Hotwired\StimulusLaravel\Commands;
+namespace HotwiredLaravel\StimulusLaravel\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
