@@ -1,5 +1,5 @@
 {
-    "name": "hotwired/stimulus-laravel",
+    "name": "hotwired-laravel/stimulus-laravel",
     "description": "Use Stimulus in your Laravel app",
     "keywords": [
         "hotwired",
