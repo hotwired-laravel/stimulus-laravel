@@ -16,15 +16,15 @@ class Manifest
             ->values()
             ->map(function (SplFileInfo $file) use ($controllersPath) {
                 $controllerPath = $this->relativePathFrom($file->getRealPath(), $controllersPath);
-                $modulePath = Str::before($controllerPath, '.');
+                $modulePath = Str::of($controllerPath)->before('.')->replace(DIRECTORY_SEPARATOR, '/')->toString();
                 $controllerClassName = Str::of($modulePath)
-                    ->explode(DIRECTORY_SEPARATOR)
+                    ->explode('/')
                     ->map(fn ($piece) => Str::studly($piece))
                     ->join('__');
-                $tagName = Str::of($modulePath)->before('_controller')->replace('_', '-')->replace(DIRECTORY_SEPARATOR, '--')->toString();
+                $tagName = Str::of($modulePath)->before('_controller')->replace('_', '-')->replace('/', '--')->toString();
 
                 $join = function ($paths) {
-                    return implode(DIRECTORY_SEPARATOR, $paths);
+                    return implode('/', $paths);
                 };
 
                 return <<<JS
