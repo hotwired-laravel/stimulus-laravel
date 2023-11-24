@@ -4,8 +4,8 @@ namespace HotwiredLaravel\StimulusLaravel\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Symfony\Component\Process\Process;
 use RuntimeException;
+use Symfony\Component\Process\Process;
 
 class InstallCommand extends Command
 {
