@@ -41,7 +41,7 @@ class StimulusGenerator
         return $this->create("$prefix/$name", stub: __DIR__.'/../stubs/strada.stub', replacementsCallback: function (array $replacements) use ($bridgeName) {
             return array_merge(
                 $replacements,
-                ['[bridge-name]' => $bridgeName ?? (string) Str::of($replacements['[attribute]'])->afterLast('/')],
+                ['[bridge-name]' => $bridgeName ?? (string) Str::of($replacements['[attribute]'])->afterLast('--')],
             );
         });
     }
