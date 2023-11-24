@@ -22,6 +22,7 @@ class StimulusLaravelServiceProvider extends PackageServiceProvider
             ->hasCommands([
                 Commands\InstallCommand::class,
                 Commands\MakeCommand::class,
+                Commands\StradaMakeCommand::class,
                 Commands\CoreMakeCommand::class,
                 Commands\PublishCommand::class,
                 Commands\ManifestCommand::class,

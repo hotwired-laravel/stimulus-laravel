@@ -53,12 +53,11 @@ trait InstallsForNode
     {
         $this->components->task('registering NPM dependency', function () {
             $this->updateNodePackages(function ($packages) {
-                return [
-                    '@hotwired/stimulus' => '^3.1.0',
-                ] + $packages;
+                return array_merge(
+                    $packages,
+                    $this->jsPackages(),
+                );
             });
-
-            $this->afterMessages[] = '<fg=white>Run: `<fg=yellow>npm install && npm run dev</>`</>';
 
             return true;
         });

@@ -12,16 +12,21 @@ class StimulusGenerator
         $this->targetFolder ??= rtrim(resource_path('js/controllers'), '/');
     }
 
-    public function create(string $name): array
+    public function create(string $name, string $stub = null, callable $replacementsCallback = null): array
     {
+        $replacementsCallback ??= fn ($replacements) => $replacements;
         $controllerName = $this->controllerName($name);
         $targetFile = $this->targetFolder.'/'.$controllerName.'_controller.js';
 
         File::ensureDirectoryExists(dirname($targetFile));
 
+        $replacements = $replacementsCallback([
+            '[attribute]' => $attributeName = $this->attributeName($name),
+        ]);
+
         File::put(
             $targetFile,
-            str_replace('[attribute]', $attributeName = $this->attributeName($name), File::get(__DIR__.'/../stubs/controller.stub')),
+            str_replace(array_keys($replacements), array_values($replacements), File::get($stub ?: __DIR__.'/../stubs/controller.stub')),
         );
 
         return [
@@ -29,6 +34,16 @@ class StimulusGenerator
             'controller_name' => $controllerName,
             'attribute_name' => $attributeName,
         ];
+    }
+
+    public function createStrada(string $prefix, string $name, string $bridgeName = null): array
+    {
+        return $this->create("$prefix/$name", stub: __DIR__.'/../stubs/strada.stub', replacementsCallback: function (array $replacements) use ($bridgeName) {
+            return array_merge(
+                $replacements,
+                ['[bridge-name]' => $bridgeName ?? (string) Str::of($replacements['[attribute]'])->afterLast('--')],
+            );
+        });
     }
 
     private function controllerName(string $name): string

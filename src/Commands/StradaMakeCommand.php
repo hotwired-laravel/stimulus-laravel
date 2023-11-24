@@ -7,18 +7,21 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Process;
 
-class MakeCommand extends Command
+class StradaMakeCommand extends Command
 {
-    public $signature = 'stimulus:make {name : The Controller name}';
+    public $signature = 'strada:make
+                            {name : The Strada Component name (without bridge prefix.}
+                            {--prefix=bridge : The component prefix.}
+                            {--bridge-name= : The name of the native component.}';
 
-    public $description = 'Makes a new Stimulus Controller.';
+    public $description = 'Makes a new Strada Component.';
 
     public function handle(StimulusGenerator $generator): int
     {
-        $this->components->info('Making Stimulus Controller');
+        $this->components->info('Making Strada Component');
 
-        $this->components->task('creating controller', function () use ($generator) {
-            $generator->create($this->argument('name'));
+        $this->components->task('creating strada component', function () use ($generator) {
+            $generator->createStrada($this->option('prefix'), $this->argument('name'), $this->option('bridge-name'));
 
             return true;
         });
