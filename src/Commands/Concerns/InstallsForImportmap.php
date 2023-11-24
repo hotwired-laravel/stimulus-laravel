@@ -47,7 +47,8 @@ trait InstallsForImportmap
         $this->components->task('pinning JS dependency (importmap)', function () {
             $this->callSilently('importmap:pin', [
                 'packages' => collect($this->jsPackages())
-                    ->map(fn ($package, $version) => "{$package}@{$version}")
+                    ->map(fn ($version, $package) => "{$package}@{$version}")
+                    ->values()
                     ->all(),
             ]);
 
