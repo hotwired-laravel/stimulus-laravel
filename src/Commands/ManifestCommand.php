@@ -31,7 +31,7 @@ class ManifestCommand extends Command
             // Run that command whenever you add a new controller or create them with
             // `php artisan stimulus:make controllerName`
 
-            import { application } from '../libs/stimulus'
+            import { Stimulus } from '../libs/stimulus'
 
             {$manifest}
             JS);

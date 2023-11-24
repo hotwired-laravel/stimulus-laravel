@@ -2,7 +2,7 @@
 // Run that command whenever you add a new controller or create them with
 // `php artisan stimulus:make controllerName`
 
-import { application } from '../libs/stimulus'
+import { Stimulus } from '../libs/stimulus'
 
 import HelloController from './hello_controller'
-application.register('hello', HelloController)
+Stimulus.register('hello', HelloController)
