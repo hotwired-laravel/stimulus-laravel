@@ -19,7 +19,7 @@ class ManifestTest extends TestCase
             <<<'JS'
 
             import HelloController from './hello_controller'
-            application.register('hello', HelloController)
+            Stimulus.register('hello', HelloController)
             JS,
             $manifest,
         );
@@ -28,7 +28,7 @@ class ManifestTest extends TestCase
             <<<'JS'
 
             import Nested__DeepController from './nested/deep_controller'
-            application.register('nested--deep', Nested__DeepController)
+            Stimulus.register('nested--deep', Nested__DeepController)
             JS,
             $manifest,
         );
@@ -37,7 +37,7 @@ class ManifestTest extends TestCase
             <<<'JS'
 
             import CoffeeController from './coffee_controller'
-            application.register('coffee', CoffeeController)
+            Stimulus.register('coffee', CoffeeController)
             JS,
             $manifest,
         );
@@ -46,7 +46,7 @@ class ManifestTest extends TestCase
             <<<'JS'
 
             import TypeScriptController from './type_script_controller'
-            application.register('type-script', TypeScriptController)
+            Stimulus.register('type-script', TypeScriptController)
             JS,
             $manifest,
         );
@@ -55,7 +55,7 @@ class ManifestTest extends TestCase
             <<<'JS'
 
             import Index from './index'
-            application.register('index', Index)
+            Stimulus.register('index', Index)
             JS,
             $manifest,
         );
