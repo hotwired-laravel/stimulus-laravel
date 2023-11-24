@@ -12,7 +12,7 @@ class InstallCommand extends Command
     use Concerns\InstallsForImportmap;
     use Concerns\InstallsForNode;
 
-    public $signature = 'stimulus:install';
+    public $signature = 'stimulus:install {--strada : Sets up Strada as well.}';
 
     public $description = 'Installs the Stimulus Laravel package.';
 
@@ -43,6 +43,13 @@ class InstallCommand extends Command
         return self::SUCCESS;
     }
 
+    protected function jsPackages(): array
+    {
+        return array_merge(
+            ['@hotwired/stimulus' => '^3.1.0'],
+            $this->hasOption('strada') ? ['@hotwired/strada' => '^1.0.0-beta1'] : [],
+        );
+    }
 
     /**
      * Run the given commands.

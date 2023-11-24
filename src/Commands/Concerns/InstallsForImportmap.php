@@ -46,7 +46,9 @@ trait InstallsForImportmap
     {
         $this->components->task('pinning JS dependency (importmap)', function () {
             $this->callSilently('importmap:pin', [
-                'packages' => ['@hotwired/stimulus'],
+                'packages' => collect($this->jsPackages())
+                    ->map(fn ($package, $version) => "{$package}@{$version}")
+                    ->all(),
             ]);
 
             // Publishes the `@hotwired/stimulus-loading` package to public/
