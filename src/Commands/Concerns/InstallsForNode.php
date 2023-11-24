@@ -58,8 +58,6 @@ trait InstallsForNode
                 ] + $packages;
             });
 
-            $this->afterMessages[] = '<fg=white>Run: `<fg=yellow>npm install && npm run dev</>`</>';
-
             return true;
         });
     }
