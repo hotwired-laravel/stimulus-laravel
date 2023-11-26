@@ -32,7 +32,7 @@ trait InstallsForImportmap
                 $importLine = trim(File::get($libsIndexSourceFile));
 
                 if (! str_contains(File::get($libsIndexFile), $importLine)) {
-                    File::append($libsIndexFile, $importLine.PHP_EOL);
+                    File::append($libsIndexFile, PHP_EOL.$importLine.PHP_EOL);
                 }
             } else {
                 File::copy($libsIndexSourceFile, $libsIndexFile);
