@@ -176,7 +176,7 @@ Importmap::pin("@hotwired/stimulus-loading", to: "vendor/stimulus-laravel/stimul
     npm install stimulus-vite-helpers
     ```
 
-3. Create `resources/js/libs/stimulus.js` with the following content:
+2. Create `resources/js/libs/stimulus.js` with the following content:
 
 ```js
 import { Application } from '@hotwired/stimulus'
