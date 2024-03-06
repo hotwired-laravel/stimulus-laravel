@@ -12,7 +12,7 @@ class StimulusGenerator
         $this->targetFolder ??= rtrim(resource_path('js/controllers'), '/');
     }
 
-    public function create(string $name, string $stub = null, callable $replacementsCallback = null): array
+    public function create(string $name, ?string $stub = null, ?callable $replacementsCallback = null): array
     {
         $replacementsCallback ??= fn ($replacements) => $replacements;
         $controllerName = $this->controllerName($name);
@@ -36,7 +36,7 @@ class StimulusGenerator
         ];
     }
 
-    public function createStrada(string $prefix, string $name, string $bridgeName = null): array
+    public function createStrada(string $prefix, string $name, ?string $bridgeName = null): array
     {
         return $this->create("$prefix/$name", stub: __DIR__.'/../stubs/strada.stub', replacementsCallback: function (array $replacements) use ($bridgeName) {
             return array_merge(
