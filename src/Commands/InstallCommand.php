@@ -5,6 +5,7 @@ namespace HotwiredLaravel\StimulusLaravel\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use RuntimeException;
+use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
 class InstallCommand extends Command
@@ -20,8 +21,6 @@ class InstallCommand extends Command
 
     public function handle(): int
     {
-        $this->components->info('Installing Stimulus Laravel');
-
         if ($this->usingImportmaps()) {
             $this->installsForImportmaps();
         } else {
@@ -37,8 +36,8 @@ class InstallCommand extends Command
         }
 
         $this->newLine();
-        $this->components->info('Done');
-        $this->newLine();
+
+        $this->components->info('Stimulus Laravel was installed successfully.');
 
         return self::SUCCESS;
     }
@@ -74,13 +73,18 @@ class InstallCommand extends Command
         });
     }
 
-    protected function usingImportmaps(): bool
+    private function usingImportmaps(): bool
     {
         return File::exists($this->importmapsFile());
     }
 
-    protected function importmapsFile(): string
+    private function importmapsFile(): string
     {
         return base_path('routes/importmap.php');
+    }
+
+    protected function phpBinary()
+    {
+        return (new PhpExecutableFinder())->find(false) ?: 'php';
     }
 }
