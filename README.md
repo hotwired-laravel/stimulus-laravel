@@ -87,11 +87,11 @@ composer require hotwired-laravel/stimulus-laravel
 2. Create `resources/js/controllers/index.js` and load your controllers like this:
 
 ```js
-import { application } from 'libs/stimulus'
+import { Stimulus } from 'libs/stimulus'
 
 // Eager load all controllers defined in the import map under controllers/**/*_controller
 import { eagerLoadControllersFrom } from '@hotwired/stimulus-loading'
-eagerLoadControllersFrom('controllers', application)
+eagerLoadControllersFrom('controllers', Stimulus)
 ```
 
 3. Create a `resources/js/libs/stimulus.js` with the following content:
@@ -99,13 +99,14 @@ eagerLoadControllersFrom('controllers', application)
 ```js
 import { Application } from '@hotwired/stimulus'
 
-const application = Application.start()
+const Stimulus = Application.start()
 
 // Configure Stimulus development experience
-application.debug = false
-window.Stimulus   = application
+Stimulus.debug = false
 
-export { application }
+window.Stimulus = Stimulus
+
+export { Stimulus }
 ```
 
 4. Create a `resources/js/libs/index.js` file with the following content (or add it to an existing file if you have one):
@@ -149,10 +150,10 @@ Importmap::pin("@hotwired/stimulus-loading", to: "vendor/stimulus-laravel/stimul
     // Run that command whenever you add a new controller or create them with
     // `php artisan stimulus:make controllerName`
 
-    import { application } from '../libs/stimulus'
+    import { Stimulus } from '../libs/stimulus'
 
     import HelloController from './hello_controller'
-    application.register('hello', HelloController)
+    Stimulus.register('hello', HelloController)
     ```
 
     #### Register controllers automatically
@@ -162,12 +163,12 @@ Importmap::pin("@hotwired/stimulus-loading", to: "vendor/stimulus-laravel/stimul
     ```js
     // resources/js/controllers/index.js
 
-    import { application } from '../libs/stimulus'
+    import { Stimulus } from '../libs/stimulus'
     import { registerControllers } from 'stimulus-vite-helpers'
 
     const controllers = import.meta.glob('./**/*_controller.js', { eager: true })
 
-    registerControllers(application, controllers)
+    registerControllers(Stimulus, controllers)
     ```
 
     And install the NPM package:
@@ -181,13 +182,14 @@ Importmap::pin("@hotwired/stimulus-loading", to: "vendor/stimulus-laravel/stimul
 ```js
 import { Application } from '@hotwired/stimulus'
 
-const application = Application.start()
+const Stimulus = Application.start()
 
 // Configure Stimulus development experience
-application.debug = false
-window.Stimulus   = application
+Stimulus.debug = false
 
-export { application }
+window.Stimulus = Stimulus
+
+export { Stimulus }
 ```
 
 3. Create a `resources/js/libs/index.js` file (if it doesn't exist) and add the following line to it:
