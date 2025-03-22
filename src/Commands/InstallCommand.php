@@ -73,6 +73,11 @@ class InstallCommand extends Command
         });
     }
 
+    protected function phpBinary()
+    {
+        return (new PhpExecutableFinder)->find(false) ?: 'php';
+    }
+
     private function usingImportmaps(): bool
     {
         return File::exists($this->importmapsFile());
@@ -81,10 +86,5 @@ class InstallCommand extends Command
     private function importmapsFile(): string
     {
         return base_path('routes/importmap.php');
-    }
-
-    protected function phpBinary()
-    {
-        return (new PhpExecutableFinder)->find(false) ?: 'php';
     }
 }

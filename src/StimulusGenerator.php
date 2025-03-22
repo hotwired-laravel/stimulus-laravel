@@ -20,7 +20,7 @@ class StimulusGenerator
     ): array {
         $replacementsCallback ??= fn ($replacements) => $replacements;
         $controllerName = $this->controllerName($name);
-        $targetFile = $this->targetFolder . '/' . $controllerName . '_controller.js';
+        $targetFile = $this->targetFolder.'/'.$controllerName.'_controller.js';
 
         File::ensureDirectoryExists(dirname($targetFile));
 
@@ -54,9 +54,9 @@ class StimulusGenerator
     private function getDefaultStub(bool $bridge): string
     {
         if ($bridge) {
-            return __DIR__ . '/../stubs/bridge.stub';
+            return __DIR__.'/../stubs/bridge.stub';
         }
 
-        return __DIR__ . '/../stubs/controller.stub';
+        return __DIR__.'/../stubs/controller.stub';
     }
 }

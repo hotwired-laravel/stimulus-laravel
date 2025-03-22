@@ -14,7 +14,7 @@ class StimulusGeneratorTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmpFolder = sys_get_temp_dir() . '/stimulus-laravel-test';
+        $this->tmpFolder = sys_get_temp_dir().'/stimulus-laravel-test';
 
         File::ensureDirectoryExists($this->tmpFolder);
         File::cleanDirectory($this->tmpFolder);
@@ -26,7 +26,7 @@ class StimulusGeneratorTest extends TestCase
         (new StimulusGenerator($this->tmpFolder))
             ->create('hello');
 
-        $this->assertTrue(File::exists($file = $this->tmpFolder . '/hello_controller.js'));
+        $this->assertTrue(File::exists($file = $this->tmpFolder.'/hello_controller.js'));
         $this->assertStringContainsString('data-controller="hello"', File::get($file));
     }
 
@@ -36,7 +36,7 @@ class StimulusGeneratorTest extends TestCase
         (new StimulusGenerator($this->tmpFolder))
             ->create('hello_controller');
 
-        $this->assertTrue(File::exists($file = $this->tmpFolder . '/hello_controller.js'));
+        $this->assertTrue(File::exists($file = $this->tmpFolder.'/hello_controller.js'));
         $this->assertStringContainsString('data-controller="hello"', File::get($file));
     }
 
@@ -46,7 +46,7 @@ class StimulusGeneratorTest extends TestCase
         $file = (new StimulusGenerator($this->tmpFolder))
             ->create('nested/hello_controller');
 
-        $this->assertTrue(File::exists($file = $this->tmpFolder . '/nested/hello_controller.js'));
+        $this->assertTrue(File::exists($file = $this->tmpFolder.'/nested/hello_controller.js'));
         $this->assertStringContainsString('data-controller="nested--hello"', File::get($file));
     }
 
@@ -56,7 +56,7 @@ class StimulusGeneratorTest extends TestCase
         $file = (new StimulusGenerator($this->tmpFolder))
             ->create('bridge/toast_controller', bridge: 'toast');
 
-        $this->assertTrue(File::exists($file = $this->tmpFolder . '/bridge/toast_controller.js'));
+        $this->assertTrue(File::exists($file = $this->tmpFolder.'/bridge/toast_controller.js'));
         $this->assertStringContainsString('data-controller="bridge--toast', $contents = File::get($file));
         $this->assertStringContainsString('from "@hotwired/hotwire-native-bridge"', $contents);
         $this->assertStringContainsString('static component = "toast"', $contents);
