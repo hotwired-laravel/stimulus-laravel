@@ -60,6 +60,7 @@ export default class extends Controller {
     connect() {
     }
 }
+```
 
 ### Making a new Hotwire Native Bridge Component
 
