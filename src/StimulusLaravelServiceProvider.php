@@ -28,23 +28,19 @@ class StimulusLaravelServiceProvider extends PackageServiceProvider
             ]);
     }
 
-    public function packageBooted()
+    public function packageBooted(): void
     {
         $this->bindDirectivesIfEnabled();
     }
 
-    private function bindDirectivesIfEnabled()
+    private function bindDirectivesIfEnabled(): void
     {
         if (! Features::enabled(Features::directives())) {
             return;
         }
 
-        Blade::directive('controller', function ($expression) {
-            return "<?php echo \HotwiredLaravel\StimulusLaravel\Facades\StimulusLaravel::controller({$expression}); ?>";
-        });
+        Blade::directive('controller', fn($expression): string => "<?php echo \HotwiredLaravel\StimulusLaravel\Facades\StimulusLaravel::controller({$expression}); ?>");
 
-        Blade::directive('target', function ($expression) {
-            return "<?php echo \HotwiredLaravel\StimulusLaravel\Facades\StimulusLaravel::target({$expression}); ?>";
-        });
+        Blade::directive('target', fn($expression): string => "<?php echo \HotwiredLaravel\StimulusLaravel\Facades\StimulusLaravel::target({$expression}); ?>");
     }
 }

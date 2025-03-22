@@ -6,8 +6,8 @@ use HotwiredLaravel\StimulusLaravel\Manifest;
 
 class ManifestTest extends TestCase
 {
-    /** @test */
-    public function generates_controllers_imports_given_a_path()
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function generates_controllers_imports_given_a_path(): void
     {
         $manifest = (new Manifest)->generateFrom(implode(DIRECTORY_SEPARATOR, [
             __DIR__,

@@ -8,8 +8,8 @@ class BladeControllerDirectiveTest extends TestCase
 {
     use InteractsWithViews;
 
-    /** @test */
-    public function binds_controller()
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function binds_controller(): void
     {
         $this->blade('<div @controller(["hello"])></div>')
             ->assertSee('<div data-controller="hello"></div>', false);
@@ -21,8 +21,8 @@ class BladeControllerDirectiveTest extends TestCase
             ->assertSee('<div data-controller="hello something"></div>', false);
     }
 
-    /** @test */
-    public function binds_values()
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function binds_values(): void
     {
         $this->blade(trim(<<<'BLADE'
             <div @controller(['hello' => ['value' => ['name' => 'Tony']]])></div>
@@ -38,8 +38,8 @@ class BladeControllerDirectiveTest extends TestCase
             ->assertSee('<div data-controller="hello other" data-hello-name-value="Tony" data-other-name-value="Tester"></div>', false);
     }
 
-    /** @test */
-    public function binds_css_classes()
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function binds_css_classes(): void
     {
         $this->blade(trim(<<<'BLADE'
             <div @controller(['hello' => ['class' => ['loading' => 'bg-gray-100 text-gray-900']]])></div>
@@ -56,8 +56,8 @@ class BladeControllerDirectiveTest extends TestCase
                 ' data-other-loading-class="bg-blue-100 text-blue-900"></div>', false);
     }
 
-    /** @test */
-    public function handles_mixed_bindings()
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function handles_mixed_bindings(): void
     {
         $this->blade(<<<'BLADE'
         <div @controller([

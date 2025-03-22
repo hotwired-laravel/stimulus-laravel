@@ -17,16 +17,14 @@ class MakeCommand extends Command
     {
         $this->components->info($this->option('bridge') ? 'Making a Stimulus Bridge Component' : 'Making Stimulus Controller');
 
-        $this->components->task('creating file', function () use ($generator) {
+        $this->components->task('creating file', function () use ($generator): true {
             $generator->create($this->argument('name'), bridge: $this->option('bridge'));
 
             return true;
         });
 
         if (! File::exists(base_path('routes/importmap.php'))) {
-            $this->components->task('regenerating manifest', function () {
-                return $this->callSilently(ManifestCommand::class);
-            });
+            $this->components->task('regenerating manifest', fn() => $this->callSilently(ManifestCommand::class));
 
             if (file_exists(base_path('pnpm-lock.yaml'))) {
                 Process::forever()->path(base_path())->run(['pnpm', 'run', 'build']);

@@ -68,12 +68,12 @@ class InstallCommand extends Command
             }
         }
 
-        $process->run(function ($type, $line) {
+        $process->run(function ($type, string $line): void {
             $this->output->write('    '.$line);
         });
     }
 
-    protected function phpBinary()
+    protected function phpBinary(): string
     {
         return (new PhpExecutableFinder)->find(false) ?: 'php';
     }

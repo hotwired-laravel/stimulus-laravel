@@ -21,7 +21,7 @@ class StimulusGeneratorTest extends TestCase
     }
 
     #[Test]
-    public function creates_stimulus_controller_with_regular_name()
+    public function creates_stimulus_controller_with_regular_name(): void
     {
         (new StimulusGenerator($this->tmpFolder))
             ->create('hello');
@@ -31,7 +31,7 @@ class StimulusGeneratorTest extends TestCase
     }
 
     #[Test]
-    public function removes_controller_suffix_when_used()
+    public function removes_controller_suffix_when_used(): void
     {
         (new StimulusGenerator($this->tmpFolder))
             ->create('hello_controller');
@@ -41,7 +41,7 @@ class StimulusGeneratorTest extends TestCase
     }
 
     #[Test]
-    public function generates_controller_with_subfolders()
+    public function generates_controller_with_subfolders(): void
     {
         $file = (new StimulusGenerator($this->tmpFolder))
             ->create('nested/hello_controller');
