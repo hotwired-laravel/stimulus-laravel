@@ -45,8 +45,8 @@ class InstallCommand extends Command
     protected function jsPackages(): array
     {
         return array_merge(
-            ['@hotwired/stimulus' => '^3.1.0'],
-            $this->hasOption('strada') ? ['@hotwired/strada' => '^1.0.0-beta1'] : [],
+            ['@hotwired/stimulus' => '^3.2'],
+            $this->hasOption('strada') ? ['@hotwired/hotwire-native-bridge' => '^1.1'] : [],
         );
     }
 
