@@ -48,7 +48,6 @@ trait InstallsForNode
         File::ensureDirectoryExists(resource_path('js/libs'));
 
         File::copy(__DIR__.'/../../../stubs/resources/js/libs/stimulus.js', resource_path('js/libs/stimulus.js'));
-        File::copy(__DIR__.'/../../../stubs/resources/js/controllers/hello_controller.js', resource_path('js/controllers/hello_controller.js'));
         File::copy(__DIR__.'/../../../stubs/resources/js/controllers/index-node.js', resource_path('js/controllers/index.js'));
 
         $libsIndexFile = resource_path('js/libs/index.js');
