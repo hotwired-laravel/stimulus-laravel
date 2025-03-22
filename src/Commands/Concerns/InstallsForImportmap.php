@@ -21,18 +21,17 @@ trait InstallsForImportmap
         File::ensureDirectoryExists(resource_path('js/controllers'));
         File::ensureDirectoryExists(resource_path('js/libs'));
 
-        File::copy(__DIR__.'/../../../stubs/resources/js/libs/stimulus.js', resource_path('js/libs/stimulus.js'));
-        File::copy(__DIR__.'/../../../stubs/resources/js/controllers/hello_controller.js', resource_path('js/controllers/hello_controller.js'));
-        File::copy(__DIR__.'/../../../stubs/resources/js/controllers/index-importmap.js', resource_path('js/controllers/index.js'));
+        File::copy(__DIR__ . '/../../../stubs/resources/js/libs/stimulus.js', resource_path('js/libs/stimulus.js'));
+        File::copy(__DIR__ . '/../../../stubs/resources/js/controllers/index-importmap.js', resource_path('js/controllers/index.js'));
 
         $libsIndexFile = resource_path('js/libs/index.js');
-        $libsIndexSourceFile = __DIR__.'/../../../stubs/resources/js/libs/index-importmap.js';
+        $libsIndexSourceFile = __DIR__ . '/../../../stubs/resources/js/libs/index-importmap.js';
 
         if (File::exists($libsIndexFile)) {
             $importLine = trim(File::get($libsIndexSourceFile));
 
             if (! str_contains(File::get($libsIndexFile), $importLine)) {
-                File::append($libsIndexFile, PHP_EOL.$importLine.PHP_EOL);
+                File::append($libsIndexFile, PHP_EOL . $importLine . PHP_EOL);
             }
         } else {
             File::copy($libsIndexSourceFile, $libsIndexFile);
