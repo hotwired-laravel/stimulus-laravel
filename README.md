@@ -48,7 +48,7 @@ To make a new Stimulus controller, run:
 php artisan stimulus:make hello_controller
 ```
 
-This should create the file for you using a scaffolding to get the controller ready for you. When using Vite, it will also regenerate the `resources/js/controllers/index.js` file to register your newly created Stimulus controller automatically.
+This should create the controller for you. When using Vite, it will also regenerate the `resources/js/controllers/index.js` file to register your newly created Stimulus controller automatically.
 
 There's also a hint comment on how you may use the controller in the DOM, something like this:
 
@@ -59,6 +59,28 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
     connect() {
     }
+}
+
+### Making a new Hotwire Native Bridge Component
+
+You may use the same `stimulus:make` command to generate a Hotwire Native Bridge component by passing the `--bridge=` option with the name of the native component. For instance, if you're working on a native Toast component, you may create it like:
+
+```bash
+php artisan stimulus:make bridge/toast_controller --bridge=toast
+```
+
+This should create a file for you using the bridge scaffolding. When using Vite, it will also generate the `resources/js/controllers/index.js` file to register your newly created Stimulus Bridge Component automatically.
+
+Like regular Stimulus controllers, there's also a hint comment on how you may use the controller in the DOM:
+
+```js
+import { BridgeComponent, BridgeElement } from "@hotwired/hotwire-native-bridge"
+
+// Connects to data-controller="bridge--toast"
+export default class extends BridgeComponent {
+    static component = "toast"
+
+    //
 }
 ```
 
