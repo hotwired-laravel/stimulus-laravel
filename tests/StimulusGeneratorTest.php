@@ -49,4 +49,16 @@ class StimulusGeneratorTest extends TestCase
         $this->assertTrue(File::exists($file = $this->tmpFolder . '/nested/hello_controller.js'));
         $this->assertStringContainsString('data-controller="nested--hello"', File::get($file));
     }
+
+    #[Test]
+    public function generates_bridge_components(): void
+    {
+        $file = (new StimulusGenerator($this->tmpFolder))
+            ->create('bridge/toast_controller', bridge: 'toast');
+
+        $this->assertTrue(File::exists($file = $this->tmpFolder . '/bridge/toast_controller.js'));
+        $this->assertStringContainsString('data-controller="bridge--toast', $contents = File::get($file));
+        $this->assertStringContainsString('from "@hotwired/hotwire-native-bridge"', $contents);
+        $this->assertStringContainsString('static component = "toast"', $contents);
+    }
 }

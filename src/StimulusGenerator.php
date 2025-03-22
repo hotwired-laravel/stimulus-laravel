@@ -12,21 +12,26 @@ class StimulusGenerator
         $this->targetFolder ??= rtrim(resource_path('js/controllers'), '/');
     }
 
-    public function create(string $name, ?string $stub = null, ?callable $replacementsCallback = null): array
-    {
+    public function create(
+        string $name,
+        ?string $stub = null,
+        ?callable $replacementsCallback = null,
+        ?string $bridge = null,
+    ): array {
         $replacementsCallback ??= fn ($replacements) => $replacements;
         $controllerName = $this->controllerName($name);
-        $targetFile = $this->targetFolder.'/'.$controllerName.'_controller.js';
+        $targetFile = $this->targetFolder . '/' . $controllerName . '_controller.js';
 
         File::ensureDirectoryExists(dirname($targetFile));
 
         $replacements = $replacementsCallback([
             '[attribute]' => $attributeName = $this->attributeName($name),
+            '[component]' => $bridge ?? '',
         ]);
 
         File::put(
             $targetFile,
-            str_replace(array_keys($replacements), array_values($replacements), File::get($stub ?: __DIR__.'/../stubs/controller.stub')),
+            str_replace(array_keys($replacements), array_values($replacements), File::get($stub ?: $this->getDefaultStub(boolval($bridge)))),
         );
 
         return [
@@ -34,16 +39,6 @@ class StimulusGenerator
             'controller_name' => $controllerName,
             'attribute_name' => $attributeName,
         ];
-    }
-
-    public function createStrada(string $prefix, string $name, ?string $bridgeName = null): array
-    {
-        return $this->create("$prefix/$name", stub: __DIR__.'/../stubs/strada.stub', replacementsCallback: function (array $replacements) use ($bridgeName) {
-            return array_merge(
-                $replacements,
-                ['[bridge-name]' => $bridgeName ?? (string) Str::of($replacements['[attribute]'])->afterLast('--')],
-            );
-        });
     }
 
     private function controllerName(string $name): string
@@ -54,5 +49,14 @@ class StimulusGenerator
     private function attributeName(string $name): string
     {
         return Str::of($this->controllerName($name))->replace('/', '--')->replace('_', '-');
+    }
+
+    private function getDefaultStub(bool $bridge): string
+    {
+        if ($bridge) {
+            return __DIR__ . '/../stubs/bridge.stub';
+        }
+
+        return __DIR__ . '/../stubs/controller.stub';
     }
 }
