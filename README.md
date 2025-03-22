@@ -36,7 +36,7 @@ php artisan stimulus:install
 
 That's it. The install command will automatically detect if you're using [Importmap Laravel](https://github.com/tonysm/importmap-laravel) or [Vite](https://vitejs.dev/) to manage your JavaScript dependencies. If you're using Importmap Laravel, we're pinning the Stimulus dependency and publishing a local dependency to your `public/vendor` folder and pinning it so you don't have to register Stimulus controllers. If you're using Vite, we'll add the Stimulus dependecy to your `package.json`.
 
-The install command generates a `resources/js/libs/stimulus.js` file that installs Stimulus. It also creates your first Stimulus controller at `resources/js/libs/controllers/hello_controller.js`. It will also create a `resources/js/libs/index.js` that ensures the `resources/js/controllers/index.js` module is imported.
+The install command generates a `resources/js/libs/stimulus.js` file that installs Stimulus. It will also create a `resources/js/libs/index.js` that ensures the `resources/js/controllers/index.js` module is imported.
 
 When using Importmap Laravel, the `resources/js/controllers/index.js` will use the published `stimulus-loading` dependency to either eager load or lazy load your Stimulus controller registrations automatically, so you don't have to manually register them. When using Vite, that file will be auto-generated whenever you make a new Stimulus controller or whenever you run the `php artisan stimulus:manifest` manually.
 
