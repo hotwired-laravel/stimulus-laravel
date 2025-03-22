@@ -1,0 +1,8 @@
+import { BridgeComponent, BridgeElement } from "@hotwired/hotwire-native-bridge"
+
+// Connects to data-controller="[attribute]"
+export default class extends BridgeComponent {
+    static component = "[component]"
+
+    //
+}

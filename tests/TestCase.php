@@ -13,18 +13,11 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Tonysm\\StimulusLaravel\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName): string => 'Tonysm\\StimulusLaravel\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
-    protected function getPackageProviders($app)
-    {
-        return [
-            StimulusLaravelServiceProvider::class,
-        ];
-    }
-
-    public function getEnvironmentSetUp($app)
+    public function getEnvironmentSetUp($app): void
     {
         config()->set('database.default', 'testing');
 
@@ -32,5 +25,12 @@ class TestCase extends Orchestra
         $migration = include __DIR__.'/../database/migrations/create_stimulus-laravel_table.php.stub';
         $migration->up();
         */
+    }
+
+    protected function getPackageProviders($app)
+    {
+        return [
+            StimulusLaravelServiceProvider::class,
+        ];
     }
 }

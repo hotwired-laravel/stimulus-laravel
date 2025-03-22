@@ -9,6 +9,33 @@ use Illuminate\Support\Facades\File;
  */
 trait InstallsForNode
 {
+    /**
+     * @param  bool  $dev
+     * @return void
+     */
+    protected static function updateNodePackages(callable $callback, $dev = true)
+    {
+        if (! File::exists(base_path('package.json'))) {
+            return;
+        }
+
+        $configurationKey = $dev ? 'devDependencies' : 'dependencies';
+
+        $packages = json_decode(File::get(base_path('package.json')), true);
+
+        $packages[$configurationKey] = $callback(
+            array_key_exists($configurationKey, $packages) ? $packages[$configurationKey] : [],
+            $configurationKey
+        );
+
+        ksort($packages[$configurationKey]);
+
+        File::put(
+            base_path('package.json'),
+            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT).PHP_EOL
+        );
+    }
+
     protected function installsForNode()
     {
         $this->publishJsFilesForNode();
@@ -47,38 +74,9 @@ trait InstallsForNode
 
     protected function updateNpmPackagesForNode()
     {
-        $this->updateNodePackages(function ($packages) {
-            return array_merge(
-                $packages,
-                $this->jsPackages(),
-            );
-        });
-    }
-
-    /**
-     * @param  bool  $dev
-     * @return void
-     */
-    protected static function updateNodePackages(callable $callback, $dev = true)
-    {
-        if (! File::exists(base_path('package.json'))) {
-            return;
-        }
-
-        $configurationKey = $dev ? 'devDependencies' : 'dependencies';
-
-        $packages = json_decode(File::get(base_path('package.json')), true);
-
-        $packages[$configurationKey] = $callback(
-            array_key_exists($configurationKey, $packages) ? $packages[$configurationKey] : [],
-            $configurationKey
-        );
-
-        ksort($packages[$configurationKey]);
-
-        File::put(
-            base_path('package.json'),
-            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT).PHP_EOL
-        );
+        $this->updateNodePackages(fn ($packages): array => array_merge(
+            $packages,
+            $this->jsPackages(),
+        ));
     }
 }

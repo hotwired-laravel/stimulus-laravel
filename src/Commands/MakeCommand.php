@@ -9,24 +9,22 @@ use Illuminate\Support\Facades\Process;
 
 class MakeCommand extends Command
 {
-    public $signature = 'stimulus:make {name : The Controller name}';
+    public $signature = 'stimulus:make {name : The Controller name} {--bridge= : The name of the bridge component to be created}';
 
-    public $description = 'Makes a new Stimulus Controller.';
+    public $description = 'Makes a new Stimulus Controller or Bridge Component.';
 
     public function handle(StimulusGenerator $generator): int
     {
-        $this->components->info('Making Stimulus Controller');
+        $this->components->info($this->option('bridge') ? 'Making a Stimulus Bridge Component' : 'Making Stimulus Controller');
 
-        $this->components->task('creating controller', function () use ($generator) {
-            $generator->create($this->argument('name'));
+        $this->components->task('creating file', function () use ($generator): true {
+            $generator->create($this->argument('name'), bridge: $this->option('bridge'));
 
             return true;
         });
 
         if (! File::exists(base_path('routes/importmap.php'))) {
-            $this->components->task('regenerating manifest', function () {
-                return $this->callSilently(ManifestCommand::class);
-            });
+            $this->components->task('regenerating manifest', fn () => $this->callSilently(ManifestCommand::class));
 
             if (file_exists(base_path('pnpm-lock.yaml'))) {
                 Process::forever()->path(base_path())->run(['pnpm', 'run', 'build']);

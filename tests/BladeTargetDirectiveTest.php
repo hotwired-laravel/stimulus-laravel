@@ -8,8 +8,8 @@ class BladeTargetDirectiveTest extends TestCase
 {
     use InteractsWithViews;
 
-    /** @test */
-    public function binds_targets()
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function binds_targets(): void
     {
         $this->blade(<<<'BLADE'
             <form data-controller="search checkbox">

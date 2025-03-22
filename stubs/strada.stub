@@ -1,8 +1,0 @@
-import { BridgeComponent, BridgeElement } from "@hotwired/strada"
-
-// Connects to data-controller="[attribute]"
-export default class extends BridgeComponent {
-    static component = "[bridge-name]"
-
-    //
-}

@@ -4,7 +4,7 @@ namespace HotwiredLaravel\StimulusLaravel;
 
 class Features
 {
-    public static function directives()
+    public static function directives(): string
     {
         return 'directives';
     }

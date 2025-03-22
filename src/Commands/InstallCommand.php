@@ -45,8 +45,8 @@ class InstallCommand extends Command
     protected function jsPackages(): array
     {
         return array_merge(
-            ['@hotwired/stimulus' => '^3.1.0'],
-            $this->hasOption('strada') ? ['@hotwired/strada' => '^1.0.0-beta1'] : [],
+            ['@hotwired/stimulus' => '^3.2'],
+            $this->hasOption('strada') ? ['@hotwired/hotwire-native-bridge' => '^1.1'] : [],
         );
     }
 
@@ -68,9 +68,14 @@ class InstallCommand extends Command
             }
         }
 
-        $process->run(function ($type, $line) {
+        $process->run(function ($type, string $line): void {
             $this->output->write('    '.$line);
         });
+    }
+
+    protected function phpBinary(): string
+    {
+        return (new PhpExecutableFinder)->find(false) ?: 'php';
     }
 
     private function usingImportmaps(): bool
@@ -81,10 +86,5 @@ class InstallCommand extends Command
     private function importmapsFile(): string
     {
         return base_path('routes/importmap.php');
-    }
-
-    protected function phpBinary()
-    {
-        return (new PhpExecutableFinder)->find(false) ?: 'php';
     }
 }

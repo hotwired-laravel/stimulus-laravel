@@ -12,9 +12,9 @@ class Manifest
     public function generateFrom(string $controllersPath): Collection
     {
         return collect(File::allFiles($controllersPath))
-            ->filter(fn (SplFileInfo $file) => str_contains($file->getFilename(), '_controller'))
+            ->filter(fn (SplFileInfo $file): bool => str_contains($file->getFilename(), '_controller'))
             ->values()
-            ->map(function (SplFileInfo $file) use ($controllersPath) {
+            ->map(function (SplFileInfo $file) use ($controllersPath): string {
                 $controllerPath = $this->relativePathFrom($file->getRealPath(), $controllersPath);
                 $modulePath = Str::of($controllerPath)->before('.')->replace(DIRECTORY_SEPARATOR, '/')->toString();
                 $controllerClassName = Str::of($modulePath)
@@ -23,9 +23,7 @@ class Manifest
                     ->join('__');
                 $tagName = Str::of($modulePath)->before('_controller')->replace('_', '-')->replace('/', '--')->toString();
 
-                $join = function ($paths) {
-                    return implode('/', $paths);
-                };
+                $join = (fn ($paths): string => implode('/', $paths));
 
                 return <<<JS
 
@@ -35,7 +33,7 @@ class Manifest
             });
     }
 
-    private function relativePathFrom(string $controllerPath, string $basePath)
+    private function relativePathFrom(string $controllerPath, string $basePath): string
     {
         return trim(str_replace($basePath, '', $controllerPath), DIRECTORY_SEPARATOR);
     }

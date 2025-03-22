@@ -12,11 +12,11 @@ class ManifestCommand extends Command
 
     public $description = 'Updates the manifest based on the existing Stimulus controllers.';
 
-    public function handle(Manifest $generator)
+    public function handle(Manifest $generator): int
     {
         $this->components->info('Regenerating Manifest');
 
-        $this->components->task('regenerating manifest', function () use ($generator) {
+        $this->components->task('regenerating manifest', function () use ($generator): true {
             $manifest = $generator->generateFrom(config('stimulus-laravel.controllers_path'))->join(PHP_EOL);
             $manifestFile = resource_path('js/controllers/index.js');
 

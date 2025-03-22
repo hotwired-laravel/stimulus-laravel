@@ -42,7 +42,7 @@ trait InstallsForImportmap
     protected function registerImportmapPins()
     {
         $dependencies = collect($this->jsPackages())
-            ->map(fn ($version, $package) => "{$package}@{$version}")
+            ->map(fn ($version, $package): string => "{$package}@{$version}")
             ->values()
             ->all();
 
@@ -50,7 +50,7 @@ trait InstallsForImportmap
             $this->phpBinary(),
             'artisan',
             'importmap:pin',
-        ], $dependencies), function ($_type, $output) {
+        ], $dependencies), function ($_type, $output): void {
             $this->output->write($output);
         });
 
@@ -61,7 +61,7 @@ trait InstallsForImportmap
             'vendor:publish',
             '--tag',
             'stimulus-laravel-assets',
-        ], function ($_type, $output) {
+        ], function ($_type, $output): void {
             $this->output->write($output);
         });
 
