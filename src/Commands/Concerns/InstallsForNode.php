@@ -74,7 +74,7 @@ trait InstallsForNode
 
     protected function updateNpmPackagesForNode()
     {
-        $this->updateNodePackages(fn($packages): array => array_merge(
+        $this->updateNodePackages(fn ($packages): array => array_merge(
             $packages,
             $this->jsPackages(),
         ));

@@ -23,7 +23,7 @@ class Manifest
                     ->join('__');
                 $tagName = Str::of($modulePath)->before('_controller')->replace('_', '-')->replace('/', '--')->toString();
 
-                $join = (fn($paths): string => implode('/', $paths));
+                $join = (fn ($paths): string => implode('/', $paths));
 
                 return <<<JS
 

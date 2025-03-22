@@ -24,7 +24,7 @@ class MakeCommand extends Command
         });
 
         if (! File::exists(base_path('routes/importmap.php'))) {
-            $this->components->task('regenerating manifest', fn() => $this->callSilently(ManifestCommand::class));
+            $this->components->task('regenerating manifest', fn () => $this->callSilently(ManifestCommand::class));
 
             if (file_exists(base_path('pnpm-lock.yaml'))) {
                 Process::forever()->path(base_path())->run(['pnpm', 'run', 'build']);

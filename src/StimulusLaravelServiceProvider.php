@@ -39,8 +39,8 @@ class StimulusLaravelServiceProvider extends PackageServiceProvider
             return;
         }
 
-        Blade::directive('controller', fn($expression): string => "<?php echo \HotwiredLaravel\StimulusLaravel\Facades\StimulusLaravel::controller({$expression}); ?>");
+        Blade::directive('controller', fn ($expression): string => "<?php echo \HotwiredLaravel\StimulusLaravel\Facades\StimulusLaravel::controller({$expression}); ?>");
 
-        Blade::directive('target', fn($expression): string => "<?php echo \HotwiredLaravel\StimulusLaravel\Facades\StimulusLaravel::target({$expression}); ?>");
+        Blade::directive('target', fn ($expression): string => "<?php echo \HotwiredLaravel\StimulusLaravel\Facades\StimulusLaravel::target({$expression}); ?>");
     }
 }
