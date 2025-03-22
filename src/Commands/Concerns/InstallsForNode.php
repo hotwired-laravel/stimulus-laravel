@@ -32,7 +32,7 @@ trait InstallsForNode
 
         File::put(
             base_path('package.json'),
-            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL
+            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT).PHP_EOL
         );
     }
 
@@ -47,17 +47,17 @@ trait InstallsForNode
         File::ensureDirectoryExists(resource_path('js/controllers'));
         File::ensureDirectoryExists(resource_path('js/libs'));
 
-        File::copy(__DIR__ . '/../../../stubs/resources/js/libs/stimulus.js', resource_path('js/libs/stimulus.js'));
-        File::copy(__DIR__ . '/../../../stubs/resources/js/controllers/index-node.js', resource_path('js/controllers/index.js'));
+        File::copy(__DIR__.'/../../../stubs/resources/js/libs/stimulus.js', resource_path('js/libs/stimulus.js'));
+        File::copy(__DIR__.'/../../../stubs/resources/js/controllers/index-node.js', resource_path('js/controllers/index.js'));
 
         $libsIndexFile = resource_path('js/libs/index.js');
-        $libsIndexSourceFile = __DIR__ . '/../../../stubs/resources/js/libs/index-node.js';
+        $libsIndexSourceFile = __DIR__.'/../../../stubs/resources/js/libs/index-node.js';
 
         if (File::exists($libsIndexFile)) {
             $importLine = trim(File::get($libsIndexSourceFile));
 
             if (! str_contains(File::get($libsIndexFile), $importLine)) {
-                File::append($libsIndexFile, $importLine . PHP_EOL);
+                File::append($libsIndexFile, $importLine.PHP_EOL);
             }
         } else {
             File::copy($libsIndexSourceFile, $libsIndexFile);
