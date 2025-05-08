@@ -3,6 +3,3 @@
 // `php artisan stimulus:make controllerName`
 
 import { Stimulus } from "../libs/stimulus";
-
-// import HelloController from './hello_controller'
-// Stimulus.register('hello', HelloController)
