@@ -19,7 +19,7 @@ class PublishBoostCommand extends Command
         ]));
 
         foreach ($guidelines as $guideline) {
-            $from = dirname(__DIR__, levels: 2) . DIRECTORY_SEPARATOR . '.ai' . DIRECTORY_SEPARATOR . $guideline;
+            $from = dirname(__DIR__, levels: 2).DIRECTORY_SEPARATOR.'.ai'.DIRECTORY_SEPARATOR.$guideline;
 
             File::ensureDirectoryExists(base_path(implode(DIRECTORY_SEPARATOR, ['.ai', 'guidelines'])), recursive: true);
             File::copy($from, base_path(implode(DIRECTORY_SEPARATOR, ['.ai', 'guidelines', $guideline])));
